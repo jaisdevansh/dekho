@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { ArrowRight, Download } from 'lucide-react';
+import Image from 'next/image';
 import { SMOOTH_EASE, GRAVITY_FLOAT } from '@/lib/motion-utils';
 
 const RubberBand = ({ children }: { children: string }) => {
@@ -39,15 +40,15 @@ export default function Hero() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: SMOOTH_EASE }}
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-sm text-indigo-300 mb-6 backdrop-blur-md font-mono">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-base font-bold text-white mb-6 backdrop-blur-md shadow-sm">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
                             </span>
-                            Frontend Engineer & UI Designer
+                            Full Stack Developer | Building Scalable & Interactive Web Applications
                         </div>
 
-                        <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-black tracking-tighter text-white leading-[0.95] mb-6">
+                        <h1 className="text-[clamp(3rem,8vw,6rem)] font-heading font-black tracking-tighter text-white leading-[0.95] mb-6">
                             <TextSpan text="BUILDING" /> <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-white">
                                 <TextSpan text="DIGITAL" /> <br />
@@ -99,41 +100,56 @@ export default function Hero() {
                     >
                         {/* Layered Composition */}
                         {/* 1. Abstract Digital Reality Background - Always visible as base */}
-                        <img
+                        <Image
                             src="/images/hero-abstract.png"
-                            alt="Abstract Background"
-                            className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-60"
+                            alt="Abstract background"
+                            draggable={false}
+                            fill
+                            priority
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            className="object-cover mix-blend-screen opacity-60 pointer-events-none select-none"
                         />
 
                         {/* 2. Profile Images - Swap on Hover */}
                         <div className="relative z-10 w-full h-full flex items-end justify-center">
                             {/* Default Profile (Black Shirt) - Fades OUT on hover */}
-                            <motion.img
-                                src="/images/hero-profile.png"
-                                alt="Devansh Jaiswal"
-                                className="absolute bottom-0 w-full h-full object-cover object-center drop-shadow-2xl"
+                            <motion.div
+                                className="absolute inset-0 w-full h-full"
                                 variants={{
                                     initial: { opacity: 1 },
                                     hover: { opacity: 0 }
                                 }}
                                 transition={{ duration: 0.4 }}
-                            />
+                            >
+                                <Image
+                                    src="/images/hero-profile.png"
+                                    alt="Devansh Jaiswal Profile"
+                                    draggable={false}
+                                    fill
+                                    priority
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-cover object-center drop-shadow-2xl pointer-events-none select-none"
+                                />
+                            </motion.div>
 
                             {/* Alternate Image (Visible on Hover/Tap) */}
                             <motion.div
-                                className="absolute inset-0 w-full h-full"
+                                className="absolute inset-0 w-full h-full pointer-events-none select-none"
                                 variants={{
                                     initial: { opacity: 0, scale: 1.1 },
                                     hover: { opacity: 1, scale: 1 }
                                 }}
                                 transition={{ duration: 0.5 }}
                             >
-                                <img
+                                <Image
                                     src="/images/hero-alternate.png"
-                                    alt="Alternate Profile"
-                                    className="w-full h-full object-cover"
+                                    alt="Devansh Jaiswal Alternate"
+                                    draggable={false}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 50vw"
+                                    className="object-cover pointer-events-none select-none"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 via-transparent to-transparent mix-blend-overlay" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 via-transparent to-transparent mix-blend-overlay pointer-events-none" />
                             </motion.div>
                         </div>
 
@@ -144,21 +160,23 @@ export default function Hero() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 z-20 pointer-events-none" />
                     </motion.div>
 
-                    {/* Background floating elements for depth */}
-                    <motion.div
-                        variants={GRAVITY_FLOAT}
-                        initial="initial"
-                        animate="animate"
-                        custom={1}
-                        className="absolute top-1/4 right-10 w-24 h-24 bg-indigo-600/20 rounded-2xl backdrop-blur-md border border-white/10 z-10"
-                    />
-                    <motion.div
-                        variants={GRAVITY_FLOAT}
-                        initial="initial"
-                        animate="animate"
-                        custom={2}
-                        className="absolute bottom-1/4 left-10 w-32 h-32 bg-blue-600/10 rounded-full backdrop-blur-md border border-white/5 z-0"
-                    />
+                    {/* Background floating elements for depth (Hidden on mobile for perf) */}
+                    <div className="hidden md:block">
+                        <motion.div
+                            variants={GRAVITY_FLOAT}
+                            initial="initial"
+                            animate="animate"
+                            custom={1}
+                            className="absolute top-1/4 right-10 w-24 h-24 bg-indigo-600/20 rounded-2xl backdrop-blur-md border border-white/10 z-10"
+                        />
+                        <motion.div
+                            variants={GRAVITY_FLOAT}
+                            initial="initial"
+                            animate="animate"
+                            custom={2}
+                            className="absolute bottom-1/4 left-10 w-32 h-32 bg-blue-600/10 rounded-full backdrop-blur-md border border-white/5 z-0"
+                        />
+                    </div>
                 </div>
 
             </div>

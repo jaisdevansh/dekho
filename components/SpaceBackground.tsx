@@ -38,7 +38,11 @@ export default function SpaceBackground() {
         // Initialize stars
         const initStars = () => {
             stars = [];
-            for (let i = 0; i < starCount; i++) {
+
+            // Critical Mobile Optimization: Scale down star count to heavily reduce Main Thread TBT
+            const starCountFinal = window.innerWidth < 768 ? Math.floor(starCount / 3) : starCount;
+
+            for (let i = 0; i < starCountFinal; i++) {
                 stars.push({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
@@ -87,15 +91,23 @@ export default function SpaceBackground() {
             animationFrameId = requestAnimationFrame(animate);
         };
 
+        // Resize heavily debounced
+        let resizeTimer: NodeJS.Timeout;
+        const handleResize = () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resizeCanvas, 200);
+        }
+
         // Event listeners
-        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('resize', handleResize);
 
         // Initial setup
         resizeCanvas();
         animate();
 
         return () => {
-            window.removeEventListener('resize', resizeCanvas);
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(resizeTimer);
             cancelAnimationFrame(animationFrameId);
         };
     }, []);

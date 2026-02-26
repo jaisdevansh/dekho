@@ -1,10 +1,56 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Send, Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Send, Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 import { GRAVITY_FLOAT, SMOOTH_EASE } from '@/lib/motion-utils';
 
 export default function Contact() {
+    const [formData, setFormData] = useState({ name: '', email: '', service: 'Web Development', message: '' });
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!formData.name || !formData.email || !formData.message) {
+            setStatus('error');
+            return;
+        }
+
+        setStatus('loading');
+
+        try {
+            // Using formsubmit.co for professional serverless email routing
+            const response = await fetch("https://formsubmit.co/ajax/devanshjais20@gmail.com", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: `New Portfolio Message from ${formData.name}`,
+                    name: formData.name,
+                    email: formData.email,
+                    service: formData.service,
+                    message: formData.message,
+                    _template: "box"
+                })
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                setFormData({ name: '', email: '', service: 'Web Development', message: '' });
+                setTimeout(() => setStatus('idle'), 5000); // Reset after 5 seconds
+            } else {
+                setStatus('error');
+                setTimeout(() => setStatus('idle'), 5000);
+            }
+        } catch (error) {
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
+    };
+
     return (
         <footer id="contact" className="relative min-h-screen bg-black overflow-hidden flex items-center justify-center py-24 px-6">
 
@@ -56,15 +102,19 @@ export default function Contact() {
                         </p>
                     </div>
 
-                    <form className="space-y-6">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-zinc-300 ml-1">YOUR NAME</label>
                             <div className="relative group">
                                 <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" />
                                 <input
                                     type="text"
+                                    required
+                                    value={formData.name}
+                                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                                    disabled={status === 'loading'}
                                     placeholder="Your Name"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all placeholder:text-zinc-700"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all placeholder:text-zinc-700 disabled:opacity-50"
                                 />
                             </div>
                         </div>
@@ -75,8 +125,12 @@ export default function Contact() {
                                 <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" />
                                 <input
                                     type="email"
+                                    required
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    disabled={status === 'loading'}
                                     placeholder="name@example.com"
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all placeholder:text-zinc-700"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all placeholder:text-zinc-700 disabled:opacity-50"
                                 />
                             </div>
                         </div>
@@ -84,11 +138,16 @@ export default function Contact() {
                         <div className="space-y-2">
                             <label className="text-sm font-bold text-zinc-300 ml-1">SERVICE REQUIRED</label>
                             <div className="relative">
-                                <select className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-4 text-zinc-300 focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all appearance-none cursor-pointer">
-                                    <option>Web Development</option>
-                                    <option>Mobile Application</option>
-                                    <option>UI/UX Design</option>
-                                    <option>Consultation</option>
+                                <select
+                                    value={formData.service}
+                                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                                    disabled={status === 'loading'}
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-4 text-zinc-300 focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all appearance-none cursor-pointer disabled:opacity-50"
+                                >
+                                    <option value="Web Development">Web Development</option>
+                                    <option value="Mobile Application">Mobile Application</option>
+                                    <option value="UI/UX Design">UI/UX Design</option>
+                                    <option value="Consultation">Consultation</option>
                                 </select>
                             </div>
                         </div>
@@ -99,20 +158,57 @@ export default function Contact() {
                                 <MessageSquare className="absolute left-4 top-6 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" />
                                 <textarea
                                     rows={4}
+                                    required
+                                    value={formData.message}
+                                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                                    disabled={status === 'loading'}
                                     placeholder="Tell me about your project goals..."
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all placeholder:text-zinc-700 resize-none"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-12 pr-4 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all placeholder:text-zinc-700 resize-none disabled:opacity-50"
                                 />
                             </div>
                         </div>
 
+                        <AnimatePresence mode="wait">
+                            {status === 'success' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center gap-3 text-green-400"
+                                >
+                                    <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+                                    <span className="text-sm font-medium">Message sent successfully! I'll get back to you soon.</span>
+                                </motion.div>
+                            )}
+
+                            {status === 'error' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center gap-3 text-red-400"
+                                >
+                                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                                    <span className="text-sm font-medium">Failed to send message. Please try again.</span>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+
                         <motion.button
-                            whileHover={{ scale: 1.02 }}
-                            whileTap={{ scale: 0.98 }}
-                            type="button"
-                            className="group w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-900/20 flex items-center justify-center gap-3 overflow-hidden transition-all"
+                            whileHover={{ scale: status === 'loading' ? 1 : 1.02 }}
+                            whileTap={{ scale: status === 'loading' ? 1 : 0.98 }}
+                            disabled={status === 'loading'}
+                            type="submit"
+                            className="group w-full py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-900/20 flex items-center justify-center gap-3 overflow-hidden transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                         >
-                            <span>Send Message</span>
-                            <Rocket className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
+                            {status === 'loading' ? (
+                                <Loader2 className="w-5 h-5 animate-spin" />
+                            ) : (
+                                <>
+                                    <span>Send Message</span>
+                                    <Rocket className="w-5 h-5 group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform duration-300" />
+                                </>
+                            )}
                         </motion.button>
 
                         <p className="text-center text-xs text-zinc-500 mt-4">

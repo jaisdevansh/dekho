@@ -29,10 +29,22 @@ export default function ScrollReveal() {
                     className="relative w-full h-[100vh] overflow-hidden shadow-2xl origin-center border border-white/10"
                 >
                     {/* Background Image with Parallax */}
-                    <motion.div style={{ y: bgY }} className="absolute inset-0 h-[120%] -top-[10%]">
+                    <div className="absolute inset-0 md:hidden h-[100%]">
+                        <img
+                            src="/images/scroll-reveal-solar-full.png"
+                            alt=""
+                            loading="lazy"
+                            className="w-full h-full object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+                    </div>
+
+                    <motion.div style={{ y: bgY }} className="absolute inset-0 h-[120%] -top-[10%] hidden md:block">
                         <img
                             src="/images/scroll-reveal-solar-full.png"
                             alt="Solar System"
+                            loading="lazy"
                             className="w-full h-full object-cover"
                         />
                         {/* Overlay - Balanced for visibility */}
