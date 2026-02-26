@@ -104,10 +104,12 @@ export default function Contact() {
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-zinc-300 ml-1">YOUR NAME</label>
+                            <label htmlFor="name" className="text-sm font-bold text-zinc-300 ml-1">YOUR NAME</label>
                             <div className="relative group">
-                                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" />
+                                <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" aria-hidden="true" />
                                 <input
+                                    id="name"
+                                    name="name"
                                     type="text"
                                     required
                                     value={formData.name}
@@ -120,10 +122,12 @@ export default function Contact() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-zinc-300 ml-1">EMAIL ADDRESS</label>
+                            <label htmlFor="email" className="text-sm font-bold text-zinc-300 ml-1">EMAIL ADDRESS</label>
                             <div className="relative group">
-                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" />
+                                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" aria-hidden="true" />
                                 <input
+                                    id="email"
+                                    name="email"
                                     type="email"
                                     required
                                     value={formData.email}
@@ -136,9 +140,11 @@ export default function Contact() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-zinc-300 ml-1">SERVICE REQUIRED</label>
+                            <label htmlFor="service" className="text-sm font-bold text-zinc-300 ml-1">SERVICE REQUIRED</label>
                             <div className="relative">
                                 <select
+                                    id="service"
+                                    name="service"
                                     value={formData.service}
                                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                                     disabled={status === 'loading'}
@@ -153,10 +159,12 @@ export default function Contact() {
                         </div>
 
                         <div className="space-y-2">
-                            <label className="text-sm font-bold text-zinc-300 ml-1">PROJECT DETAILS</label>
+                            <label htmlFor="message" className="text-sm font-bold text-zinc-300 ml-1">PROJECT DETAILS</label>
                             <div className="relative group">
-                                <MessageSquare className="absolute left-4 top-6 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" />
+                                <MessageSquare className="absolute left-4 top-6 w-5 h-5 text-zinc-600 group-focus-within:text-indigo-400 transition-colors" aria-hidden="true" />
                                 <textarea
+                                    id="message"
+                                    name="message"
                                     rows={4}
                                     required
                                     value={formData.message}
@@ -229,13 +237,14 @@ export default function Contact() {
                             href={social.href}
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label={`Visit my ${social.name}`}
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 + (i * 0.1) }}
                             whileHover={{ scale: 1.1, backgroundColor: 'rgba(255, 255, 255, 0.1)' }}
                             className="w-16 h-16 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors backdrop-blur-md cursor-pointer"
                         >
-                            <social.icon className="w-6 h-6" />
+                            <social.icon className="w-6 h-6" aria-hidden="true" />
                         </motion.a>
                     ))}
                 </div>

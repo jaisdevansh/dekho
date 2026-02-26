@@ -1,4 +1,5 @@
 import SpaceBackground from '@/components/SpaceBackground';
+import GlobalPreloader from '@/components/GlobalPreloader';
 
 export const dynamic = 'force-static';
 export const revalidate = false;
@@ -14,6 +15,7 @@ import Navbar from '@/components/Navbar';
 export default function Home() {
   return (
     <main className="bg-transparent min-h-screen text-foreground selection:bg-indigo-500/30 relative">
+      <GlobalPreloader />
       <SpaceBackground />
       <div className="flex flex-col relative z-10 hidden-scrollbar">
         <Navbar />

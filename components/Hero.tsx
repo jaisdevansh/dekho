@@ -70,6 +70,7 @@ export default function Hero() {
                     >
                         <button
                             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                            aria-label="View Work"
                             className="group px-8 py-4 bg-white text-black font-bold rounded-full flex items-center gap-2 hover:scale-105 transition-transform"
                         >
                             View Work <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -79,6 +80,7 @@ export default function Hero() {
                             href="https://drive.google.com/file/d/1iUziz0-L-MfacDPugpI1nJrzXk4smZbB/view?usp=drivesdk"
                             target="_blank"
                             rel="noopener noreferrer"
+                            aria-label="Download Resume"
                             className="px-8 py-4 border border-white/10 bg-white/5 text-white font-bold rounded-full hover:bg-white/10 transition-colors flex items-center gap-2"
                         >
                             Resume <Download className="w-4 h-4" />

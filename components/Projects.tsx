@@ -115,12 +115,12 @@ function ProjectCard({ project, index, range, targetScale }: { project: any, ind
 
                         <div className="flex flex-wrap items-center gap-4 mb-6 md:mb-0">
                             {project.live && project.live !== "#" && (
-                                <a href={project.live} target="_blank" rel="noopener noreferrer" className="px-6 py-2 rounded-full bg-white text-black font-semibold hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 shadow-lg">
+                                <a href={project.live} target="_blank" rel="noopener noreferrer" aria-label={`View live demo of ${project.title}`} className="px-6 py-2 rounded-full bg-white text-black font-semibold hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 shadow-lg">
                                     Live Demo <ExternalLink className="w-4 h-4" />
                                 </a>
                             )}
                             {project.github && (
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="px-6 py-2 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 backdrop-blur-md">
+                                <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label={`View GitHub repository for ${project.title}`} className="px-6 py-2 rounded-full bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 backdrop-blur-md">
                                     GitHub <Github className="w-4 h-4" />
                                 </a>
                             )}

@@ -45,7 +45,7 @@ export default function Navbar() {
                 )}
             >
                 {/* Logo */}
-                <a href="#" className="relative group z-50">
+                <a href="#" aria-label="Home" className="relative group z-50">
                     <span className="text-2xl font-heading font-black tracking-tighter text-white">
                         Devansh<span className="text-indigo-500">.</span>
                     </span>
@@ -75,6 +75,7 @@ export default function Navbar() {
                 {/* Mobile Hamburger */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
+                    aria-label={isOpen ? "Close menu" : "Open menu"}
                     className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors"
                 >
                     <AnimatePresence mode="wait">

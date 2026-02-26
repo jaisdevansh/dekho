@@ -87,15 +87,17 @@ export default function Certifications() {
                 <div className="flex justify-end gap-4 mb-8">
                     <button
                         onClick={() => scroll('left')}
+                        aria-label="Scroll left"
                         className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white transition-all active:scale-95"
                     >
-                        <ChevronLeft className="w-5 h-5" />
+                        <ChevronLeft className="w-5 h-5" aria-hidden="true" />
                     </button>
                     <button
                         onClick={() => scroll('right')}
+                        aria-label="Scroll right"
                         className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-white transition-all active:scale-95"
                     >
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-5 h-5" aria-hidden="true" />
                     </button>
                 </div>
 
