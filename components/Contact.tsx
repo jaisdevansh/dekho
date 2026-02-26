@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { Send, Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import { GRAVITY_FLOAT, SMOOTH_EASE } from '@/lib/motion-utils';
 
 export default function Contact() {
@@ -141,20 +141,21 @@ export default function Contact() {
 
                         <div className="space-y-2">
                             <label htmlFor="service" className="text-sm font-bold text-zinc-300 ml-1">SERVICE REQUIRED</label>
-                            <div className="relative">
+                            <div className="relative group">
                                 <select
                                     id="service"
                                     name="service"
                                     value={formData.service}
                                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
                                     disabled={status === 'loading'}
-                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 px-4 text-zinc-300 focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all appearance-none cursor-pointer disabled:opacity-50"
+                                    className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-4 pr-12 text-white focus:outline-none focus:border-indigo-500/50 focus:bg-white/10 transition-all appearance-none cursor-pointer disabled:opacity-50"
                                 >
-                                    <option value="Web Development">Web Development</option>
-                                    <option value="Mobile Application">Mobile Application</option>
-                                    <option value="UI/UX Design">UI/UX Design</option>
-                                    <option value="Consultation">Consultation</option>
+                                    <option value="Web Development" className="bg-zinc-900 text-white">Web Development</option>
+                                    <option value="Mobile Application" className="bg-zinc-900 text-white">Mobile Application</option>
+                                    <option value="UI/UX Design" className="bg-zinc-900 text-white">UI/UX Design</option>
+                                    <option value="Consultation" className="bg-zinc-900 text-white">Consultation</option>
                                 </select>
+                                <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600 pointer-events-none group-focus-within:text-indigo-400 transition-colors" aria-hidden="true" />
                             </div>
                         </div>
 
