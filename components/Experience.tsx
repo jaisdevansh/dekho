@@ -66,9 +66,7 @@ export default function Experience() {
                 </motion.div>
 
                 <div className="relative border-l border-zinc-800 ml-4 md:ml-6 space-y-12 md:space-y-16">
-                    {timeline.map((item, index) => {
-                        const Icon = item.icon;
-                        return (
+                    {timeline.map((item, index) => (
                             <motion.div
                                 key={index}
                                 initial={{ opacity: 0, x: -20 }}
@@ -91,10 +89,13 @@ export default function Experience() {
                                     <p className="text-zinc-400 mt-2 leading-relaxed max-w-xl">
                                         {item.desc}
                                     </p>
+
+                                    <div className="absolute left-0 top-0 w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/50 z-10 -translate-x-[26px]">
+                                        <item.icon className="w-6 h-6 text-white" />
+                                    </div>
                                 </div>
                             </motion.div>
-                        );
-                    })}
+                    ))}
                 </div>
             </div>
         </section>

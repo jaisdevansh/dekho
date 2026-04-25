@@ -25,8 +25,6 @@ export default function SpaceBackground() {
         let animationFrameId: number;
         let stars: Star[] = [];
         const starCount = 150; // Number of stars
-        const width = window.innerWidth;
-        const height = window.innerHeight;
 
         // Set canvas size
         const resizeCanvas = () => {

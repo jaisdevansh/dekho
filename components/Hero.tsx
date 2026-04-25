@@ -101,16 +101,8 @@ export default function Hero() {
                         className="relative z-20 w-64 h-80 md:w-80 md:h-96 bg-gradient-to-b from-zinc-800 to-black rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center overflow-hidden cursor-pointer group"
                     >
                         {/* Layered Composition */}
-                        {/* 1. Abstract Digital Reality Background - Always visible as base */}
-                        <Image
-                            src="/images/hero-abstract.png"
-                            alt="Abstract background"
-                            draggable={false}
-                            fill
-                            priority
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            className="object-cover mix-blend-screen opacity-60 pointer-events-none select-none"
-                        />
+                        {/* Abstract gradient background */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900/20 via-purple-900/10 to-blue-900/20 mix-blend-screen opacity-60 pointer-events-none" />
 
                         {/* 2. Profile Images - Swap on Hover */}
                         <div className="relative z-10 w-full h-full flex items-end justify-center">

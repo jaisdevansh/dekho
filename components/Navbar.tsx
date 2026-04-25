@@ -142,7 +142,7 @@ export default function Navbar() {
                                 onClick={() => setIsOpen(false)}
                                 className="flex items-center justify-center gap-2 w-full py-4 bg-indigo-600 text-white font-bold rounded-xl"
                             >
-                                Let's Talk <ArrowRight size={20} />
+                                Let&apos;s Talk <ArrowRight size={20} />
                             </a>
                         </motion.div>
                     </motion.div>

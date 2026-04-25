@@ -2,8 +2,8 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
-import { SMOOTH_EASE } from '@/lib/motion-utils';
+import { ExternalLink, Github } from 'lucide-react';
+import Image from 'next/image';
 
 const projects = [
     {
@@ -71,7 +71,19 @@ export default function Projects() {
     )
 }
 
-function ProjectCard({ project, index, range, targetScale }: { project: any, index: number, range: number[], targetScale: number }) {
+interface Project {
+    id: string;
+    client: string;
+    title: string;
+    desc: string;
+    tech: string[];
+    images: string[];
+    live: string;
+    github: string;
+    color: string;
+}
+
+function ProjectCard({ project, index, targetScale }: { project: Project, index: number, range: number[], targetScale: number }) {
     const container = useRef(null);
     const { scrollYProgress } = useScroll({
         target: container,
@@ -88,12 +100,7 @@ function ProjectCard({ project, index, range, targetScale }: { project: any, ind
             >
                 {/* Background Gradient Texture */}
                 <div className="absolute inset-0 z-0">
-                    <img
-                        src="/images/card-gradient.png"
-                        alt=""
-                        loading="lazy"
-                        className="w-full h-full object-cover opacity-50 contrast-125 saturate-150 pointer-events-none select-none"
-                    />
+                    <div className="w-full h-full bg-gradient-to-br from-zinc-900 via-zinc-800 to-black opacity-50 contrast-125 saturate-150 pointer-events-none select-none" />
                     <div className="absolute inset-0 bg-black/60 mix-blend-multiply" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
                 </div>
@@ -152,16 +159,16 @@ function ProjectCard({ project, index, range, targetScale }: { project: any, ind
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-auto h-[60%] w-full relative z-20">
                     {/* Main Large Image */}
                     <div className="md:col-span-2 h-full rounded-2xl overflow-hidden relative group border border-white/10 shadow-2xl">
-                        <img src={project.images[0]} alt={`${project.title} Main View`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <Image src={project.images[0]} alt={`${project.title} Main View`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                     </div>
 
                     {/* Side Stacked Images */}
                     <div className="md:col-span-2 grid grid-rows-2 gap-4 h-full">
                         <div className="rounded-2xl overflow-hidden relative group border border-white/10 shadow-xl">
-                            <img src={project.images[1]} alt={`${project.title} Detail View`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                            <Image src={project.images[1]} alt={`${project.title} Detail View`} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
                         <div className="rounded-2xl overflow-hidden relative group border border-white/10 shadow-xl">
-                            <img src={project.images[2]} alt={`${project.title} Mobile View`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                            <Image src={project.images[2]} alt={`${project.title} Mobile View`} fill sizes="(max-width: 768px) 100vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                         </div>
                     </div>
                 </div>

@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
-import { GRAVITY_FLOAT, SMOOTH_EASE } from '@/lib/motion-utils';
+import { Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Contact() {
     const [formData, setFormData] = useState({ name: '', email: '', service: 'Web Development', message: '' });
@@ -45,7 +45,7 @@ export default function Contact() {
                 setStatus('error');
                 setTimeout(() => setStatus('idle'), 5000);
             }
-        } catch (error) {
+        } catch {
             setStatus('error');
             setTimeout(() => setStatus('idle'), 5000);
         }
@@ -73,10 +73,12 @@ export default function Contact() {
                         className="w-full max-w-sm aspect-square relative mb-8 lg:mb-0"
                     >
                         {/* Avatar Image */}
-                        <img
+                        <Image
                             src="/images/footer-astronaut.png"
                             alt="Rockstar Astronaut"
-                            className="w-full h-full object-contain mix-blend-screen drop-shadow-2xl hover:scale-105 transition-transform duration-500"
+                            fill
+                            sizes="(max-width: 768px) 100vw, 400px"
+                            className="object-contain mix-blend-screen drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                         />
                         {/* Subtle Glow behind avatar */}
                         <div className="absolute inset-0 bg-indigo-500/20 blur-[100px] -z-10 rounded-full" />
@@ -93,12 +95,12 @@ export default function Contact() {
                 >
                     <div className="mb-8">
                         <h2 className="text-4xl md:text-5xl font-heading font-bold text-white mb-4">
-                            Let's Build Something <br />
+                            Let&apos;s Build Something <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Extraordinary.</span>
                         </h2>
                         <p className="text-zinc-400 text-lg leading-relaxed">
                             Ready to take your digital presence to the next level?
-                            I'm available for freelance projects and full-time roles.
+                            I&apos;m available for freelance projects and full-time roles.
                         </p>
                     </div>
 
@@ -186,7 +188,7 @@ export default function Contact() {
                                     className="p-4 rounded-xl bg-green-500/10 border border-green-500/20 flex items-center gap-3 text-green-400"
                                 >
                                     <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-                                    <span className="text-sm font-medium">Message sent successfully! I'll get back to you soon.</span>
+                                    <span className="text-sm font-medium">Message sent successfully! I&apos;ll get back to you soon.</span>
                                 </motion.div>
                             )}
 

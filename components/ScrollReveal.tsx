@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 export default function ScrollReveal() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -30,22 +31,24 @@ export default function ScrollReveal() {
                 >
                     {/* Background Image with Parallax */}
                     <div className="absolute inset-0 md:hidden h-[100%]">
-                        <img
+                        <Image
                             src="/images/scroll-reveal-solar-full.png"
                             alt=""
-                            loading="lazy"
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="100vw"
+                            className="object-cover"
                         />
                         <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
                     </div>
 
                     <motion.div style={{ y: bgY }} className="absolute inset-0 h-[120%] -top-[10%] hidden md:block">
-                        <img
+                        <Image
                             src="/images/scroll-reveal-solar-full.png"
                             alt="Solar System"
-                            loading="lazy"
-                            className="w-full h-full object-cover"
+                            fill
+                            sizes="100vw"
+                            className="object-cover"
                         />
                         {/* Overlay - Balanced for visibility */}
                         <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
