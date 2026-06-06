@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, User, MessageSquare, Rocket, Github, Twitter, Linkedin, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
+import { Mail, User, MessageSquare, Rocket, Github, Linkedin, CheckCircle2, AlertCircle, Loader2, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Contact() {
@@ -232,7 +232,6 @@ export default function Contact() {
                 <div className="absolute left-6 bottom-6 flex gap-4 z-20">
                     {[
                         { name: 'Github', icon: Github, href: 'https://github.com/Jaisdevansh' },
-                        { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/' },
                         { name: 'Linkedin', icon: Linkedin, href: 'https://www.linkedin.com/in/devansh-jaiswal-2493b8276' }
                     ].map((social, i) => (
                         <motion.a

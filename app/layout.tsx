@@ -3,6 +3,7 @@ import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import SmoothScroll from '@/components/SmoothScroll';
+import GlobalPreloader from '@/components/GlobalPreloader';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -43,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"
@@ -63,6 +64,7 @@ export default function RootLayout({
         />
       </head>
       <body className={cn(inter.variable, outfit.variable, "bg-background text-foreground font-sans antialiased overflow-x-hidden")}>
+        <GlobalPreloader />
         <SmoothScroll />
         {children}
       </body>

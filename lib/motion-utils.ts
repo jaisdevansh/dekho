@@ -15,8 +15,8 @@ export const DURATION = {
 export const GRAVITY_FLOAT: Variants = {
     initial: { y: 0, rotate: 0 },
     animate: (custom: number = 0) => ({
-        y: [0, -15, 0],
-        rotate: [0, 1, -1, 0], // Very subtle rotation for realism
+        y: [0, -15],
+        rotate: [-1, 1], // Very subtle rotation for realism
         transition: {
             duration: 6,
             ease: "easeInOut",

@@ -34,32 +34,55 @@ export default function Hero() {
             <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
 
                 {/* Left: Typography */}
-                <div className="space-y-8 z-10">
+                <div className="space-y-6 z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: SMOOTH_EASE }}
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-base font-bold text-white mb-6 backdrop-blur-md shadow-sm">
+                        {/* Currently Building Status Badge */}
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-xs font-semibold text-indigo-300 mb-6 backdrop-blur-md">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
                             </span>
-                            Full Stack Developer | Building Scalable & Interactive Web Applications
+                            Currently Building &amp; Open to Work
                         </div>
 
-                        <h1 className="text-[clamp(3rem,8vw,6rem)] font-heading font-black tracking-tighter text-white leading-[0.95] mb-6">
-                            <TextSpan text="BUILDING" /> <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-white">
-                                <TextSpan text="DIGITAL" /> <br />
-                                <TextSpan text="REALITIES." />
+                        <h1 className="text-[clamp(3.5rem,7vw,5.5rem)] font-heading font-black tracking-tighter text-white leading-[0.95] mb-4">
+                            <TextSpan text="DEVANSH" /> <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 via-indigo-100 to-white">
+                                <TextSpan text="JAISWAL." />
                             </span>
                         </h1>
 
-                        <p className="text-lg md:text-xl text-zinc-400 max-w-lg leading-relaxed">
-                            I craft high-performance, visually stunning web experiences.
-                            Merging clean code with premium design to deliver impact.
+                        <p className="text-base md:text-lg font-heading font-bold text-indigo-400 mb-4 tracking-tight">
+                            Full Stack Developer &bull; React &amp; React Native &bull; AI Integrations &bull; Chrome Extensions
                         </p>
+
+                        <p className="text-base md:text-lg text-zinc-400 max-w-lg leading-relaxed">
+                            Building production-grade web and mobile applications with real-world AI integrations and deployments.
+                        </p>
+
+                        {/* Stats Grid */}
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 py-6 border-y border-white/5 my-6">
+                            <div>
+                                <span className="block text-2xl md:text-3xl font-heading font-black text-white">3+</span>
+                                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Deployed Projects</span>
+                            </div>
+                            <div>
+                                <span className="block text-2xl md:text-3xl font-heading font-black text-white">5+</span>
+                                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">AI APIs Integrated</span>
+                            </div>
+                            <div>
+                                <span className="block text-2xl md:text-3xl font-heading font-black text-white">1</span>
+                                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Extension Built</span>
+                            </div>
+                            <div>
+                                <span className="block text-2xl md:text-3xl font-heading font-black text-white">7</span>
+                                <span className="text-[10px] text-zinc-500 uppercase tracking-widest font-bold">Certifications</span>
+                            </div>
+                        </div>
                     </motion.div>
 
                     <motion.div

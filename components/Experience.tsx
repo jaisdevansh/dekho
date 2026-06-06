@@ -6,44 +6,30 @@ import { Briefcase, GraduationCap, Code2, Rocket } from 'lucide-react';
 const timeline = [
     {
         year: "2026",
+        title: "React Native Developer Intern",
+        subtitle: "Zenbourg, Indore (Remote)",
+        desc: "Developed cross-platform mobile application features using React Native, collaborating directly with Founder & CEO on product architecture and implementation. Delivered complete project end-to-end.",
+        icon: Briefcase
+    },
+    {
+        year: "2026",
         title: "Graduation (Expected)",
-        subtitle: "Ajay Kumar Garg Engineering College",
-        desc: "B.Tech in Information Technology. Focusing on advanced frontend architectures.",
+        subtitle: "Ajay Kumar Garg Engineering College, Ghaziabad",
+        desc: "B.Tech in Information Technology. Focus on modern frontend structures, algorithms, and application architectures. CGPA: 7.0/10.",
         icon: GraduationCap
     },
     {
         year: "August 2025",
-        title: "Web Development Intern",
+        title: "Web Development Training",
         subtitle: "Codec Technologies",
-        desc: "Built responsive web apps, improved load speed by 20%, integrated REST APIs with 30% data efficiency improvement.",
-        icon: Briefcase
-    },
-    {
-        year: "Early 2025",
-        title: "AI Trip Planner Project",
-        subtitle: "Personal Milestone",
-        desc: "Developed a complex AI-driven application using Next.js and Gemini API flux architecture.",
-        icon: Rocket
-    },
-    {
-        year: "2024",
-        title: "Full Stack Blog App",
-        subtitle: "Team Project",
-        desc: "Led a team of 3 to build a secure blogging platform. Implemented JWT auth and admin dashboard.",
-        icon: Code2
-    },
-    {
-        year: "2023",
-        title: "Python Automation",
-        subtitle: "Learning Phase",
-        desc: "Built CLI tools for productivity. File search, app launching automation scripts.",
+        desc: "Completed web development training covering HTML, CSS, JavaScript, and React.js fundamentals.",
         icon: Code2
     },
     {
         year: "2022",
         title: "Started B.Tech IT",
-        subtitle: "AKTU, Ghaziabad",
-        desc: "Began journey in Computer Science. Strong foundation in C++ and OOPS.",
+        subtitle: "Ajay Kumar Garg Engineering College, Ghaziabad (AKTU)",
+        desc: "Began journey in software engineering. Strong foundation in C++ and Object-Oriented Programming (OOPS).",
         icon: GraduationCap
     }
 ];
@@ -65,7 +51,7 @@ export default function Experience() {
                     <p className="text-muted-foreground">My path from student to developer.</p>
                 </motion.div>
 
-                <div className="relative border-l border-zinc-800 ml-4 md:ml-6 space-y-12 md:space-y-16">
+                <div className="relative border-l border-zinc-800 ml-4 md:ml-12 space-y-12 md:space-y-16">
                     {timeline.map((item, index) => (
                             <motion.div
                                 key={index}
@@ -73,10 +59,15 @@ export default function Experience() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ delay: index * 0.1, duration: 0.5 }}
                                 viewport={{ once: true, margin: "-50px" }}
-                                className="relative pl-8 md:pl-12 group"
+                                className="relative pl-8 md:pl-16 group"
                             >
-                                {/* Dot */}
-                                <span className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-zinc-600 group-hover:bg-indigo-500 group-hover:scale-125 transition-all duration-300 ring-4 ring-background" />
+                                {/* Mobile-only Timeline Dot */}
+                                <span className="absolute -left-[5px] top-3 w-2.5 h-2.5 rounded-full bg-zinc-600 group-hover:bg-indigo-500 group-hover:scale-125 transition-all duration-300 ring-4 ring-background md:hidden" />
+
+                                {/* Desktop-only Icon Circle */}
+                                <div className="hidden md:flex absolute -left-6 top-1.5 w-12 h-12 bg-zinc-950 border border-zinc-800 text-zinc-400 group-hover:text-indigo-400 group-hover:border-indigo-500/50 group-hover:bg-indigo-950/20 rounded-full items-center justify-center shadow-lg transition-all duration-300 z-10">
+                                    <item.icon className="w-5 h-5 transition-transform group-hover:scale-110" />
+                                </div>
 
                                 <div className="flex flex-col gap-2">
                                     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -89,10 +80,6 @@ export default function Experience() {
                                     <p className="text-zinc-400 mt-2 leading-relaxed max-w-xl">
                                         {item.desc}
                                     </p>
-
-                                    <div className="absolute left-0 top-0 w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center shadow-lg shadow-indigo-500/50 z-10 -translate-x-[26px]">
-                                        <item.icon className="w-6 h-6 text-white" />
-                                    </div>
                                 </div>
                             </motion.div>
                     ))}

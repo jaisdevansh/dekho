@@ -3,19 +3,29 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Award, ExternalLink, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+
+const MotionImage = motion.create(Image);
 
 const certifications = [
     {
-        title: "Cloud Computing",
-        issuer: "NPTEL",
-        date: "2024",
+        title: "Python Programming",
+        issuer: "Infosys Springboard",
+        date: "Apr 2025",
+        link: "https://drive.google.com/file/d/14qieexdWoz_hFKS3ox9tkOrpfVE2ScTc/view?usp=drivesdk",
+        image: "/images/cert-python.png"
+    },
+    {
+        title: "Intro to Cyber Security",
+        issuer: "Infosys Springboard",
+        date: "Apr 2025",
         link: "https://drive.google.com/file/d/1vdBbPLZDuUoQyPwLkA9QfPyERnnbFMYk/view?usp=drivesdk",
         image: "/images/cert-cloud.png"
     },
     {
-        title: "AI & ML Fundamentals",
-        issuer: "Google Cloud",
-        date: "2024",
+        title: "Fundamentals of AI & ML",
+        issuer: "Infosys Springboard",
+        date: "Jun 2024",
         link: "https://drive.google.com/file/d/1A0P1gkoUeU5pPyWRuaDiTXV2bWoY0jqC/view?usp=drivesdk",
         image: "/images/cert-ai-ml.png"
     },
@@ -25,13 +35,6 @@ const certifications = [
         date: "2024",
         link: "https://drive.google.com/file/d/1M0amivra6ADloB31VZ0x5ucQ8eBT-M_a/view?usp=drivesdk",
         image: "/images/cert-api.png"
-    },
-    {
-        title: "Python Programming",
-        issuer: "NPTEL",
-        date: "2024",
-        link: "https://drive.google.com/file/d/14qieexdWoz_hFKS3ox9tkOrpfVE2ScTc/view?usp=drivesdk",
-        image: "/images/cert-python.png"
     },
     {
         title: "Generative AI",
@@ -46,6 +49,13 @@ const certifications = [
         date: "2024",
         link: "https://drive.google.com/file/d/1bF4h0wSuVBwc5vBrltzEmM1CE2-cQfAo/view?usp=drivesdk",
         image: "/images/cert-gemini.png"
+    },
+    {
+        title: "AI & ML Fundamentals",
+        issuer: "Google Cloud",
+        date: "2024",
+        link: "https://drive.google.com/file/d/1A0P1gkoUeU5pPyWRuaDiTXV2bWoY0jqC/view?usp=drivesdk",
+        image: "/images/cert-ai-ml.png"
     }
 ];
 
@@ -122,11 +132,13 @@ export default function Certifications() {
                         >
                             {/* Thumbnail Image */}
                             <div className="relative w-full h-[200px] overflow-hidden bg-zinc-800">
-                                <motion.img
+                                <MotionImage
                                     whileHover={{ scale: 1.05 }}
                                     transition={{ duration: 0.5 }}
                                     src={cert.image}
                                     alt={cert.title}
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 380px"
                                     className="w-full h-full object-contain bg-black/50 opacity-90 group-hover:opacity-100 transition-opacity"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/90 to-transparent" />

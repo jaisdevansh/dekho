@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main className="bg-transparent min-h-screen text-foreground selection:bg-indigo-500/30 relative">
       <SpaceBackground />
-      <div className="flex flex-col relative z-10 hidden-scrollbar">
+      <div className="flex flex-col relative z-10 no-scrollbar">
         <Navbar />
         <Hero />
         <ScrollReveal />

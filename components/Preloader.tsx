@@ -9,13 +9,17 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
-        // Lock scroll
+        // Lock scroll on mount
         document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = ''; // Unlock scroll on unmount
+        };
+    }, []);
 
+    useEffect(() => {
         // If we've gone past the last greeting, wait a bit then complete
         if (index >= greetings.length) {
             const timeout = setTimeout(() => {
-                document.body.style.overflow = ''; // Unlock scroll
                 onComplete();
             }, 300);
             return () => clearTimeout(timeout);
@@ -32,7 +36,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         <motion.div
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-background"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black"
         >
             <AnimatePresence mode="wait">
                 {index < greetings.length && (
