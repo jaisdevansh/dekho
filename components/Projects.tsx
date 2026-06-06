@@ -207,7 +207,7 @@ function ProjectCard({ project, index, targetScale }: { project: Project, index:
                 onClick={handleCardClick}
                 style={{ scale: isMobile ? 1 : scale, top: isMobile ? '0' : `calc(-5vh + ${index * 25}px)` }}
                 className={cn(
-                    "relative flex flex-col w-full max-w-6xl h-[75vh] md:h-[85vh] md:rounded-[2.5rem] border-y md:border overflow-hidden shadow-2xl bg-zinc-900/10 backdrop-blur-3xl p-6 md:p-12 md:origin-top transform-gpu transition-colors duration-500 cursor-pointer hover:border-indigo-500/20",
+                    "relative flex flex-col w-full max-w-6xl h-[75vh] md:h-[85vh] md:rounded-[2.5rem] border-y md:border overflow-hidden shadow-2xl bg-zinc-950/80 backdrop-blur-md p-6 md:p-12 md:origin-top transform-gpu transition-colors duration-500 cursor-pointer hover:border-indigo-500/20",
                     project.featured ? "border-indigo-500/30" : "border-white/10"
                 )}
             >
